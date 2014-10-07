@@ -2,6 +2,7 @@
 
 import time
 import config
+from threading import Thread
 
 import Adafruit_CharLCD as LCD
 lcd = LCD.Adafruit_CharLCDPlate()
@@ -30,3 +31,13 @@ def RotateReadings():
 		lcd.message(reading)
 		time.sleep(config.reading_delay)
 	lcd.clear()
+
+def MonitorButtons():
+	while True:
+		# Loop through each button and check if it is pressed.
+		for button in buttons:
+			if lcd.is_pressed(button[0]):
+				RotateReadings()
+
+monitorButtonsThread = Thread(target = MonitorButtons)
+monitorButtonsThread.start()
