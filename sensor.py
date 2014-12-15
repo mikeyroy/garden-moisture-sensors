@@ -35,7 +35,7 @@ def ReadChannel(channel):
 def RunSensors():
 	while True:
 		GPIO.output(7, True)
-		time.sleep(0.1)
+		time.sleep(1)
 	
 		curr_date_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 	
@@ -48,7 +48,7 @@ def RunSensors():
 				name = 'Pot ' + str(i + 1)
 			)
 	
-			time.sleep(0.1)
+			time.sleep(0.5)
 		
 		GPIO.output(7, False)
 	
@@ -65,4 +65,5 @@ runSensorsThread = Thread(target = RunSensors)
 runSensorsThread.start()
 
 while True: #keep the script alive so it can cancel the threads with Ctrl+c
+	#Readout.Display(ReadChannel(0))
 	time.sleep(1)

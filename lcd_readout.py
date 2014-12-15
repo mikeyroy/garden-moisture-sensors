@@ -32,6 +32,11 @@ def RotateReadings():
 		time.sleep(config.reading_delay)
 	lcd.clear()
 
+def Display(text):
+	lcd.clear()
+	print('---- {} ----'.format(text))
+	lcd.message('---- {} ----'.format(text))
+
 def MonitorButtons():
 	while True:
 		# Loop through each button and check if it is pressed.
